@@ -9,7 +9,7 @@ const Header = ({course}) => {
   )
 }
 
-const Content = ({content, exercise}) => {
+const Part = ({content, exercise}) => {
   return(
     <>
       <h3>{content} {exercise}</h3>
@@ -36,9 +36,9 @@ const App = () => {
   return (
     <div className="App">
       <Header course={course} />
-      <Content content={part1} exercise={exercises1} />
-      <Content content={part2} exercise={exercises2} />
-      <Content content={part3} exercise={exercises3} />
+      <Part content={part1} exercise={exercises1} />
+      <Part content={part2} exercise={exercises2} />
+      <Part content={part3} exercise={exercises3} />
       <Total x={exercises1} y={exercises2} z={exercises3}/>
     </div>
   )
