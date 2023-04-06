@@ -1,55 +1,47 @@
 import "./App.css"
 
-const Header = ({ course }) => {
-  return (
+import { useState } from 'react'
+
+const Button = ({handler, value}) => {
+  return(
     <>
-      <h1>{course} </h1>
-      <br />
+      <Button onClick = {handler}>{value}</Button>
     </>
   )
 }
 
-const Content = ({ parts }) => {
-  return (
+const Display = ({text, values}) => {
+  return(
     <>
-      <h3>{parts[0].name} {parts[0].exercises}</h3>
-      <h3>{parts[1].name} {parts[1].exercises}</h3>
-      <h3>{parts[2].name} {parts[2].exercises}</h3>
+      <h4>{text} {values}</h4>
+      <br/>
     </>
   )
 }
 
-const Total = ({ parts }) => {
-  return (
-    <>
-      <p>{parts[2].exercises + parts[1].exercises + parts[0].exercises}</p>
-    </>
-  )
-}
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
+  
+  const handlebad = () => setBad(bad + 1)
+  const handleNeutral = () => setNeutral(neutral + 1)
+  const handleGood = () => setGood(good + 1)
 
   return (
     <div className="App">
-      <Header course={course.name} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
+      <h1>Give your FeedBack</h1>
+      <Button handler={handleGood} value="Good"/>
+      <Button handler={handleNeutral} value="Neutral"/>
+      <Button handler={handlebad} value="Bad"/>
+
+
+      <h1>Statistics</h1>
+      <Display values={good} text="Good"/>
+      <Display values={neutral} text="Neutral"/>
+      <Display values={bad} text="Bad"/>
     </div>
   )
 }
