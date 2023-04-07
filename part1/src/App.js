@@ -25,16 +25,16 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
+
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState({0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:5})
+  const [votes, setVotes] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf, 0))
 
   const handleNext = () => {
     setSelected(Math.floor(Math.random() * (anecdotes.length)))
   }
 
   const handleVote = () => {
-    var copy = {...votes}
+    var copy = [ ...votes ]
     copy[selected] += 1
     setVotes(copy)
   }
@@ -43,8 +43,12 @@ const App = () => {
     <div className='App'>
       <h4>{anecdotes[selected]}</h4>
       <p>Has {votes[selected]} votes.</p>
-      <Button handler={handleVote} value="Vote"/>
-      <Button handler={handleNext} value="Next Anectode"/>
+      <Button handler={handleVote} value="Vote" />
+      <Button handler={handleNext} value="Next Anectode" />
+
+      <h2>Anectode With the Heighest Number of Votes</h2>
+      <h4>{anecdotes[votes.indexOf(Math.max(...votes))]}</h4>
+      <h6>This has {Math.max(...votes)} Votes</h6>
     </div>
   )
 }
