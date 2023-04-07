@@ -2,19 +2,21 @@ import "./App.css"
 
 import { useState } from 'react'
 
-const Button = ({handler, value}) => {
-  return(
+const Button = ({ handler, value }) => {
+  return (
     <>
-      <Button onClick = {handler}>{value}</Button>
+      <button onClick={handler}>
+        {value}
+      </button>
     </>
   )
 }
 
-const Display = ({text, values}) => {
-  return(
+const Display = ({ text, values }) => {
+  return (
     <>
       <h4>{text} {values}</h4>
-      <br/>
+      <br />
     </>
   )
 }
@@ -25,7 +27,7 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  
+
   const handlebad = () => setBad(bad + 1)
   const handleNeutral = () => setNeutral(neutral + 1)
   const handleGood = () => setGood(good + 1)
@@ -33,15 +35,15 @@ const App = () => {
   return (
     <div className="App">
       <h1>Give your FeedBack</h1>
-      <Button handler={handleGood} value="Good"/>
-      <Button handler={handleNeutral} value="Neutral"/>
-      <Button handler={handlebad} value="Bad"/>
+      <Button handler={handleGood} value="Good" />
+      <Button handler={handleNeutral} value="Neutral" />
+      <Button handler={handlebad} value="Bad" />
 
 
       <h1>Statistics</h1>
-      <Display values={good} text="Good"/>
-      <Display values={neutral} text="Neutral"/>
-      <Display values={bad} text="Bad"/>
+      <Display values={good} text="Good" />
+      <Display values={neutral} text="Neutral" />
+      <Display values={bad} text="Bad" />
     </div>
   )
 }
