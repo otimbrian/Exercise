@@ -12,11 +12,27 @@ const Button = ({ handler, value }) => {
   )
 }
 
-const Display = ({ text, values }) => {
+const Display = ({ text, value }) => {
   return (
     <>
-      <h4>{text} : {values}</h4>
+      <h4>{text} : {value}</h4>
     </>
+  )
+}
+
+const Statistics = ({good, neutral, bad}) =>{
+ 
+  return(
+      <>
+          
+              <Display text='Good' value={good} />
+              <Display text='Neutral' value={neutral} />
+              <Display text ='Bad' value ={bad} />
+              <Display text='All' value={bad + neutral + good} />
+              <Display text='Average' value={((bad * -1) + good)/(bad + neutral + good)} />
+              <Display text='Positive' value={good /(bad + neutral + good) * 100} />
+          
+      </>
   )
 }
 
@@ -50,12 +66,7 @@ const App = () => {
 
 
       <h1>Statistics</h1>
-      <Display values={good} text="Good" />
-      <Display values={neutral} text="Neutral" />
-      <Display values={bad} text="Bad" />
-      <Display values={total} text="All" />
-      <Display text='Average' values={((bad * -1) + good)/(bad + neutral + good)} />
-      <Display text='Positive' values={good /(bad + neutral + good) * 100}  />
+      <Statistics good={good} bad={bad} neutral={neutral}/>
     </div>
   )
 }
