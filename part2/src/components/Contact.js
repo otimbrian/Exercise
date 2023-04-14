@@ -4,7 +4,8 @@ export default function Contact({ persons }) {
             {persons.map(person => {
                 return (
                     <li key={person.name}>
-                        <h5>{person.name}</h5>
+                        <h5>{person.name} : {person.number}</h5>
+
                     </li>
                 )
             })}

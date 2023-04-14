@@ -1,9 +1,11 @@
+import './App.css'
 import { useState } from 'react'
 import Contact from './components/Contact'
 
 const App = () => {
-	const [persons, setPersons] = useState([{ name: 'Arto Hellas' }])
+	const [persons, setPersons] = useState([])
 	const [newName, setNewName] = useState('')
+	const [newPhoneNumber, setNewPhoneNumber] = useState('')
 
 	const handleNameChange = event => {
 		event.preventDefault()
@@ -13,21 +15,31 @@ const App = () => {
 
 	const handleNameSubmit = event => {
 		event.preventDefault()
+
 		if (persons.some(value => value.name === newName)) {
 			alert(`${newName} Alredy in Phone Book`)
 			setNewName('')
 		} else {
-			setPersons(persons.concat({ name: newName }))
+			const personObject = { name: newName, number: newPhoneNumber }
+			setPersons(persons.concat(personObject))
 			setNewName('')
+			setNewPhoneNumber('')
 		}
 	}
 
+	const handlePhoneNumberChange = event => {
+		event.preventDefault()
+
+		setNewPhoneNumber(event.target.value)
+	}
 	return (
-		<div>
+		<div className='App'>
 			<h2>Phonebook</h2>
 			<form onSubmit={handleNameSubmit}>
 				<div>
-					name: <input onChange={handleNameChange} value={newName} />
+					Name: <input onChange={handleNameChange} value={newName} />
+					PhoneNumber:{' '}
+					<input onChange={handlePhoneNumberChange} value={newPhoneNumber} />
 				</div>
 				<div>
 					<button type='submit'>add</button>
