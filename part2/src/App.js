@@ -13,8 +13,13 @@ const App = () => {
 
 	const handleNameSubmit = event => {
 		event.preventDefault()
-		setPersons(persons.concat({ name: newName }))
-		setNewName('')
+		if (persons.some(value => value.name === newName)) {
+			alert(`${newName} Alredy in Phone Book`)
+			setNewName('')
+		} else {
+			setPersons(persons.concat({ name: newName }))
+			setNewName('')
+		}
 	}
 
 	return (
