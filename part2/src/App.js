@@ -1,13 +1,14 @@
-import "./App.css"
-import Course from "./components/Course"
+import './App.css'
+import Course from './components/Course'
 
-
-
-const App = ({course}) => {
-
+const App = ({ courses }) => {
 	return (
-		<div className="App">
-			<Course course={course} />
+		<div className='App'>
+			{courses.map(course => {
+				return (
+					<Course key={course.id} course={course} />
+				)
+			})}
 		</div>
 	)
 }

@@ -13,9 +13,14 @@ const Course = ({ course }) => {
 					)
 				})}
 
-				<h5>This part has <b>{course.parts.reduce((sum, part) => {
-					return sum += part.exercises
-				}, 0)}</b></h5>
+				<h5>
+					This part has{' '}
+					<b>
+						{course.parts.reduce((sum, part) => (sum += part.exercises), 0)}
+					</b>
+					{' '} Exercises
+				</h5>
+				<hr/>
 			</ul>
 		</>
 	)
