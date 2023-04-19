@@ -4,13 +4,15 @@ import Contact from './components/Contact'
 import personService from './services/person'
 import Filter from './components/Filter'
 import AddContacts from './components/AddContacts'
-import axios from 'axios'
+
+// import axios from 'axios'
 
 const App = () => {
 	useEffect(() => {
-		axios.get('http://localhost:3001/persons').then(response => {
-			setPersons(response.data)
-		})
+		personService.getAll().then(returnedObject => setPersons(returnedObject))
+		// axios.get('http://localhost:3001/persons').then(response => {
+		// 	setPersons(response.data)
+		// })
 	}, [])
 
 	const [persons, setPersons] = useState([])

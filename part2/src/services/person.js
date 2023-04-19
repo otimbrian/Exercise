@@ -7,4 +7,10 @@ const create = async newObject => {
     return reponse.data
 }
 
-export default {create: create}
+const getAll = async () => {
+    const response = await axios.get(baseUrl)
+    return response.data
+}
+
+const personService = {create, getAll}
+export default personService
