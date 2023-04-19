@@ -1,6 +1,7 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import Contact from './components/Contact'
+import personService from './services/person'
 import Filter from './components/Filter'
 import AddContacts from './components/AddContacts'
 import axios from 'axios'
@@ -37,7 +38,10 @@ const App = () => {
 			setNewName('')
 		} else {
 			const personObject = { name: newName, number: newPhoneNumber }
-			setPersons(persons.concat(personObject))
+			personService.create(personObject).then(returnedObject => {
+				setPersons(persons.concat(returnedObject))
+			})
+			// setPersons(persons.concat(personObject))
 			setNewName('')
 			setNewPhoneNumber('')
 		}
