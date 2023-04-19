@@ -1,10 +1,17 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Contact from './components/Contact'
 import Filter from './components/Filter'
 import AddContacts from './components/AddContacts'
+import axios from 'axios'
 
 const App = () => {
+	useEffect(() => {
+		axios.get('http://localhost:3001/persons').then(response => {
+			setPersons(response.data)
+		})
+	}, [])
+
 	const [persons, setPersons] = useState([])
 	const [newName, setNewName] = useState('')
 	const [newPhoneNumber, setNewPhoneNumber] = useState('')
