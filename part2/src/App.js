@@ -59,6 +59,17 @@ const App = () => {
 		setSearch(event.target.value)
 	}
 
+	const handleDelete = (id) => {
+        const person = persons.find(n => n.id === id)
+        if(window.confirm(`Delete ${person.name}`)){
+        personService.deleteContact(id).then(
+            response => {
+                setPersons(persons.filter(pers => pers.id !== id))
+            }
+        )
+     }
+  }
+
 	return (
 		<div className='App'>
 			<h2>Phonebook</h2>
@@ -71,7 +82,7 @@ const App = () => {
 				handleNameSubmit={handleNameSubmit}
 			/>
 			<h2>Numbers</h2>
-			<Contact persons={personToDisplay} />
+			<Contact persons={personToDisplay} action={handleDelete} label={"Delete"}/>
 		</div>
 	)
 }

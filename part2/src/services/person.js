@@ -12,5 +12,13 @@ const getAll = async () => {
     return response.data
 }
 
-const personService = {create, getAll}
+const deleteContact = id =>{
+    return axios.delete(`${baseUrl}/${id}`)
+}
+
+const updateContact =(id, newObject) =>{
+    return axios.put(`${baseUrl}/${id}`, newObject)
+}
+
+const personService = {create, getAll, deleteContact, updateContact}
 export default personService
