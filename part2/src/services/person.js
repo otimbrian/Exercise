@@ -16,8 +16,9 @@ const deleteContact = id =>{
     return axios.delete(`${baseUrl}/${id}`)
 }
 
-const updateContact =(id, newObject) =>{
-    return axios.put(`${baseUrl}/${id}`, newObject)
+const updateContact = async (id, newObject) => {
+    const response =  await axios.put(`${baseUrl}/${id}`, newObject)
+    return response.data
 }
 
 const personService = {create, getAll, deleteContact, updateContact}
